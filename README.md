@@ -1,3 +1,3 @@
 ## Repository ULACIT Project
 
-Portainer prometheus exporter repository
+Portainer prometheus exporter repository.

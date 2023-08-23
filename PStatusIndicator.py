@@ -1,22 +1,25 @@
 import subprocess
 import ast
 import json
+import argparse
 
-try:
-    def getAndFindData():
+#Create parser.
+parser = argparse.ArgumentParser(description = "Prometheus Script.")
+#Define argumetns.
+parser.add_argument("-apik", "--apikey", type=str, help="Indicates which Portainer API Key")
+parser.add_argument("-url", type=str, help="Indicates which Portainer URL")
+#Parse the rguments.
+args = parser.parse_args()
+
+def getAndFindData(APIK, URL):
+    apiKey = APIK
+    url = URL
+
+    try:
         #Define the command to get the container configuration and writing to a JSON file "containerAPI.json".
-
-        apiKey = "ptr_ZZjjmWCiS5YOJcpCd3xIcpLImTwO2LxWNMsWByGJ0jw="
-        url = "https://portainer.delorenzo.mobi/api/endpoints/2/docker/containers/json?all=true"
-
         getJSON = ("API_KEY=" + apiKey + 
         "\ncurl -X GET --header 'Content-Type: application/json' --header \"x-api-key: $API_KEY\" --url '" + 
         url + "' | jq > containerAPI.json")
-
-        # getJSON = """ 
-        # API_KEY='ptr_ZZjjmWCiS5YOJcpCd3xIcpLImTwO2LxWNMsWByGJ0jw='
-        # curl -X GET --header 'Content-Type: application/json' --header "x-api-key: $API_KEY" --url 'https://portainer.delorenzo.mobi/api/endpoints/2/docker/containers/json?all=true' | jq > containerAPI.json
-        # """
 
         #Excecuting the command.
         subprocess.run(getJSON, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -36,7 +39,7 @@ try:
                 #print("Break!")
                 break
         
-        print("Number of Containers: " + str(count) + "\n") #Display number of containers.
+        print("\nNumber of Containers: " + str(count) + "\n") #Display number of containers.
     
         #Find the data in JSON.
         containerNumber = 0
@@ -47,7 +50,8 @@ try:
             "\n\tStatus: " + info[containerNumber]["Status"] + "\n")
             containerNumber+=1
 
-    getAndFindData()
+    except:
+        #Print error message.
+        print("! Error while retreiving data, please check your internet connection.")
 
-except:
-    print("! Error while retreiving data, please check your internet connection.")
+getAndFindData(args.apikey, args.url)
