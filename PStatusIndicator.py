@@ -38,7 +38,8 @@ def getAndFindData(APIK, URL):
             except:
                 break
         
-        print("\nNumber of Containers: " + str(count) + "\n") #Display number of containers.
+        #Display number of containers.
+        print("\nNumber of Containers: " + str(count) + "\n")
             
         #Find the data in JSON: Prints Name, State and Status of each container.
         containerNumber = 0
