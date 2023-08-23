@@ -16,18 +16,19 @@ def getAndFindData(APIK, URL):
     url = URL
 
     try:
-        #Define the command to get the container configuration and writing to a JSON file "containerAPI.json".
+        #Define the command to get the container configuration.
         getJSON = ("API_KEY=" + apiKey + 
         "\ncurl -X GET --header 'Content-Type: application/json' --header \"x-api-key: $API_KEY\" --url '" + 
-        url + "' | jq > containerAPI.json")
+        url + "' | jq")
 
         #Excecuting the command.
-        subprocess.run(getJSON, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        JSONinfo = subprocess.run(getJSON, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-        #Reading the JSON file and loading in a python dictionary "info".
-        with open("containerAPI.json") as openJSON:
-            info = json.load(openJSON)
-            openJSON.close()
+        #Decoding the output from bytes to string.
+        output = JSONinfo.stdout.decode("utf-8")
+        
+        #Loading the string into a dictionary (JSON Format).
+        info = json.loads(output)
 
         #Count the number of containers.
         count = 0
