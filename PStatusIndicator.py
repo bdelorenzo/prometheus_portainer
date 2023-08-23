@@ -4,7 +4,7 @@ import json
 import argparse
 
 #Create parser.
-parser = argparse.ArgumentParser(description = "Prometheus Script.")
+parser = argparse.ArgumentParser(description = "Portainer Prometheus Script.")
 #Define argumetns.
 parser.add_argument("-apik", "--apikey", type=str, help="Indicates which Portainer API Key")
 parser.add_argument("-url", type=str, help="Indicates which Portainer URL")
@@ -36,14 +36,12 @@ def getAndFindData(APIK, URL):
                 container = info[count]
                 count+=1
             except:
-                #print("Break!")
                 break
         
         print("\nNumber of Containers: " + str(count) + "\n") #Display number of containers.
-    
-        #Find the data in JSON.
+            
+        #Find the data in JSON: Prints Name, State and Status of each container.
         containerNumber = 0
-        #Prints Name, State and Status of each container.
         while containerNumber < count:
             print("\tContainer: " + info[containerNumber]["Names"][0][1:] +
             "\n\tState: " + info[containerNumber]["State"] +
@@ -52,6 +50,9 @@ def getAndFindData(APIK, URL):
 
     except:
         #Print error message.
-        print("! Error while retreiving data, please check your internet connection.")
+        print("\n! Error while retreiving data, possible errors:" +
+        "\n - No internet connection." +
+        "\n - Invalid API key or URL." +
+        "\nPlease make sure to use the parameters, run this script followed by \"--help\" for more information.\n")
 
 getAndFindData(args.apikey, args.url)
