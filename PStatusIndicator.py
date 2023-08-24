@@ -2,6 +2,11 @@ import subprocess
 import ast
 import json
 import argparse
+from prometheus_client import start_http_server, Gauge
+import time
+
+#Creating the Gauge.
+container_state = Gauge("container_state", "State of the container", ["container_name"])
 
 #Create parser.
 parser = argparse.ArgumentParser(description = "Portainer Prometheus Script.")
@@ -11,9 +16,12 @@ parser.add_argument("-url", type=str, help="Indicates which Portainer URL")
 #Parse the rguments.
 args = parser.parse_args()
 
+#Requests containers from Portainer.
 def getAndFindData(APIK, URL):
     apiKey = APIK
     url = URL
+
+    container_info = []
 
     try:
         #Define the command to get the container configuration.
@@ -31,24 +39,24 @@ def getAndFindData(APIK, URL):
         info = json.loads(output)
 
         #Count the number of containers.
-        count = 0
+        count = 0 #Indicates the number of containers.
         while True:
             try:
                 container = info[count]
                 count+=1
             except:
                 break
-        
-        #Display number of containers.
-        print("\nNumber of Containers: " + str(count) + "\n")
             
-        #Find the data in JSON: Prints Name, State and Status of each container.
+        #Find the data in JSON: Gets Name and State of each container.
         containerNumber = 0
         while containerNumber < count:
-            print("\tContainer: " + info[containerNumber]["Names"][0][1:] +
-            "\n\tState: " + info[containerNumber]["State"] +
-            "\n\tStatus: " + info[containerNumber]["Status"] + "\n")
+            #Adding information to a list.
+            container_info.append((info[containerNumber]["Names"][0][1:],
+            info[containerNumber]["State"]))
+
             containerNumber+=1
+        
+        return container_info #Returns container list.
 
     except:
         #Print error message.
@@ -56,5 +64,29 @@ def getAndFindData(APIK, URL):
         "\n - No internet connection." +
         "\n - Invalid API key or URL." +
         "\nPlease make sure to use the parameters, run this script followed by \"--help\" for more information.\n")
+        return container_info #Returns empty container list.
 
-getAndFindData(args.apikey, args.url)
+#Update the gauge with the provided values.
+def update_metrics(container_name, state):
+    container_state.labels(container_name=container_name).set(1 if state == 'running' else 0)
+
+#Starts HTTP server.
+if __name__ == "__main__":
+    start_http_server(8000)
+
+    try:
+        while True:
+            #Gets list of containers.
+            containers = getAndFindData(args.apikey, args.url)
+            
+            #Validate if the list came empty.
+            if not containers:
+                exit(0)
+            else: #Proceeds if list is not empty.
+                for information in containers:
+                    update_metrics(*information)
+                    print("The server is running.")
+                    time.sleep(1)
+    except:
+        print("\nThe server stopped.\n")
+        exit(0)
