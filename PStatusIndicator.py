@@ -4,6 +4,7 @@ import json
 import argparse
 from prometheus_client import start_http_server, Gauge
 import time
+import os
 
 #Creating the Gauge.
 container_state = Gauge("container_state", "State of the container", ["container_name"])
@@ -13,6 +14,7 @@ parser = argparse.ArgumentParser(description = "Portainer Prometheus Script.")
 #Define argumetns.
 parser.add_argument("-apik", "--apikey", type=str, help="Indicates which Portainer API Key")
 parser.add_argument("-url", type=str, help="Indicates which Portainer URL")
+parser.add_argument("-debug", "--debugging", action='store_true', help="Shows containers.")
 #Parse the rguments.
 args = parser.parse_args()
 
@@ -54,6 +56,11 @@ def getAndFindData(APIK, URL):
             container_info.append((info[containerNumber]["Names"][0][1:],
             info[containerNumber]["State"]))
 
+            if(args.debugging):
+                #Debugging
+                print("\n\tContainer: " + info[containerNumber]["Names"][0][1:] +
+                "\n\tState: " + info[containerNumber]["State"] + "\n")
+
             containerNumber+=1
         
         return container_info #Returns container list.
@@ -73,20 +80,24 @@ def update_metrics(container_name, state):
 #Starts HTTP server.
 if __name__ == "__main__":
     start_http_server(8000)
+    seconds = 1
 
     try:
         while True:
             #Gets list of containers.
             containers = getAndFindData(args.apikey, args.url)
-            
+
             #Validate if the list came empty.
             if not containers:
                 exit(0)
             else: #Proceeds if list is not empty.
                 for information in containers:
                     update_metrics(*information)
-                    print("The server is running.")
+                    print("The server is running. (" + str(seconds) + "s)")
+                    #subprocess.rub(["clear"])
+                    #os.system("clear")
+                    seconds+=1
                     time.sleep(1)
     except:
-        print("\nThe server stopped.\n")
+        print("\nThe server stopped. Total seconds (" + str(seconds) + ")\n")
         exit(0)
