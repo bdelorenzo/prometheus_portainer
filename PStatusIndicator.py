@@ -12,9 +12,9 @@ container_state = Gauge("container_state", "State of the container", ["container
 #Create parser.
 parser = argparse.ArgumentParser(description = "Portainer Prometheus Script.")
 #Define argumetns.
-parser.add_argument("-apik", "--apikey", type=str, help="Indicates which Portainer API Key")
-parser.add_argument("-url", type=str, help="Indicates which Portainer URL")
-parser.add_argument("-debug", "--debugging", action='store_true', help="Shows containers.")
+parser.add_argument("-apik", "--apikey", type=str, help="Indicates which Portainer API Key (mandatory)")
+parser.add_argument("-url", type=str, help="Indicates which Portainer URL (mandatory)")
+parser.add_argument("-debug", "--debugging", action='store_true', help="Shows containers (optional)")
 #Parse the rguments.
 args = parser.parse_args()
 
