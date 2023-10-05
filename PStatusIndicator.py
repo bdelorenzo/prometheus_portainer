@@ -33,7 +33,7 @@ def getAndFindData(APIK, URL):
 
         #Excecuting the command.
         JSONinfo = subprocess.run(getJSON, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+        
         #Decoding the output from bytes to string.
         output = JSONinfo.stdout.decode("utf-8")
         
@@ -93,11 +93,12 @@ if __name__ == "__main__":
             else: #Proceeds if list is not empty.
                 for information in containers:
                     update_metrics(*information)
-                    print("The server is running. (" + str(seconds) + "s)")
                     #subprocess.rub(["clear"])
-                    #os.system("clear")
-                    seconds+=1
-                    time.sleep(1)
+                    #os.system("clear")                 
+
+            print("The server is running. (" + str(seconds) + "s)")
+            time.sleep(1)
+            seconds+=1
     except:
         print("\nThe server stopped. Total seconds (" + str(seconds) + ")\n")
         exit(0)
