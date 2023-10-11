@@ -49,7 +49,7 @@ def getAndFindData(APIK, URL):
             except:
                 break
             
-        #Find the data in JSON: Gets Name and State of each container.
+        #Find the data in JSON: Gets Names and State of each container.
         containerNumber = 0
         while containerNumber < count:
             #Adding information to a list.
@@ -92,9 +92,7 @@ if __name__ == "__main__":
                 exit(0)
             else: #Proceeds if list is not empty.
                 for information in containers:
-                    update_metrics(*information)
-                    #subprocess.rub(["clear"])
-                    #os.system("clear")                 
+                    update_metrics(*information)                 
 
             print("The server is running. (" + str(seconds) + "s)")
             time.sleep(1)

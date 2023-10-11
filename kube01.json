@@ -1,0 +1,106 @@
+{
+  "Id": 5,
+  "Name": "Kube 01",
+  "Type": 6,
+  "URL": "192.168.12.236:30778",
+  "GroupId": 1,
+  "PublicURL": "",
+  "Gpus": [],
+  "TLSConfig": {
+    "TLS": true,
+    "TLSSkipVerify": true
+  },
+  "AzureCredentials": {
+    "ApplicationID": "",
+    "TenantID": "",
+    "AuthenticationKey": ""
+  },
+  "TagIds": [],
+  "Status": 1,
+  "StatusMessage": {
+    "summary": "",
+    "detail": "",
+    "operation": "",
+    "operationStatus": ""
+  },
+  "CloudProvider": null,
+  "Snapshots": [],
+  "UserAccessPolicies": {},
+  "TeamAccessPolicies": {},
+  "EdgeKey": "",
+  "Kubernetes": {
+    "Snapshots": [
+      {
+        "Time": 1696802570,
+        "KubernetesVersion": "v1.27.5",
+        "NodeCount": 2,
+        "TotalCPU": 8,
+        "TotalMemory": 8203034624
+      }
+    ],
+    "Configuration": {
+      "UseLoadBalancer": false,
+      "UseServerMetrics": false,
+      "EnableResourceOverCommit": true,
+      "ResourceOverCommitPercentage": 20,
+      "StorageClasses": [],
+      "IngressClasses": null,
+      "RestrictDefaultNamespace": false,
+      "IngressAvailabilityPerNamespace": false,
+      "RestrictStandardUserIngressW": false,
+      "AllowNoneIngressClass": false
+    },
+    "Flags": {
+      "IsServerMetricsDetected": true,
+      "IsServerIngressClassDetected": true,
+      "IsServerStorageDetected": true
+    }
+  },
+  "Nomad": {
+    "Snapshots": null
+  },
+  "ComposeSyntaxMaxVersion": "3.9",
+  "SecuritySettings": {
+    "allowBindMountsForRegularUsers": true,
+    "allowPrivilegedModeForRegularUsers": true,
+    "allowVolumeBrowserForRegularUsers": false,
+    "allowHostNamespaceForRegularUsers": true,
+    "allowDeviceMappingForRegularUsers": true,
+    "allowStackManagementForRegularUsers": true,
+    "allowContainerCapabilitiesForRegularUsers": true,
+    "allowSysctlSettingForRegularUsers": true,
+    "enableHostManagementFeatures": false
+  },
+  "LastCheckInDate": 0,
+  "QueryDate": 0,
+  "Heartbeat": false,
+  "UserTrusted": false,
+  "PostInitMigrations": {
+    "MigrateIngresses": false,
+    "MigrateGPUs": false,
+    "MigrateGateKeeper": false
+  },
+  "EdgeCheckinInterval": 0,
+  "Edge": {
+    "AsyncMode": false,
+    "PingInterval": 0,
+    "SnapshotInterval": 0,
+    "CommandInterval": 0
+  },
+  "Agent": {
+    "Version": "2.18.4"
+  },
+  "LocalTimeZone": "",
+  "ChangeWindow": {
+    "Enabled": false,
+    "StartTime": "",
+    "EndTime": ""
+  },
+  "DeploymentOptions": null,
+  "EnableImageNotification": true,
+  "EnableGPUManagement": false,
+  "AuthorizedUsers": null,
+  "AuthorizedTeams": null,
+  "Tags": null,
+  "IsEdgeDevice": false
+}
