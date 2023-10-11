@@ -62,7 +62,40 @@ def printNewJSON():
         except:
             break
 
-    print(results)
-    #print(results[1]["Docker 02"])
+    debugging = True
+
+    def debug():
+        #Debug view:
+        #Prints the number of Endpoints.
+        print("Number of Endpoints: " + str(len(results) - 1) + "\n")
+
+        #Gets and prints each Endpoint and Container.
+        counter = 0
+        while counter < len(results) - 1: #len(results) is the length of the results list.
+
+            #Gets the names of each Endpoint with next(iter().
+            EndptName = next(iter(results[counter]))
+
+            #Prints Endpoint + number of containers.
+            print("\tEndpoint " + str(counter + 1) + ": " + str(EndptName) + "\n")
+            print("\tNumber of containers: " + str(len(results[counter][EndptName])))
+
+            #Counts and prints each container Name and its State:
+            countApps = 0
+            while countApps < len(results[counter][EndptName]): #len(results[counter][EndptName]) is the number of containers.
+
+                #Generates string.
+                debudResult = (
+                "\t\tName: " + str(results[counter][EndptName][countApps][0]) + "\n" + #Name.
+                "\t\tState: " + str(results[counter][EndptName][countApps][1]) + "\n" #State.
+                )
+
+                print(debudResult)
+                countApps+=1
+
+            counter+=1
+
+    if debugging:
+        debug()
 
 printNewJSON()
