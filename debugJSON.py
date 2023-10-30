@@ -67,11 +67,11 @@ def printNewJSON():
     def debug():
         #Debug view:
         #Prints the number of Endpoints.
-        print("Number of Endpoints: " + str(len(results) - 1) + "\n")
+        print("Number of Endpoints: " + str(len(results)) + "\n")
 
         #Gets and prints each Endpoint and Container.
         counter = 0
-        while counter < len(results) - 1: #len(results) is the length of the results list.
+        while counter < len(results): #len(results) is the length of the results list.
 
             #Gets the names of each Endpoint with next(iter().
             EndptName = next(iter(results[counter]))
