@@ -24,7 +24,6 @@ def printNewJSON():
         openJSON.close()
 
     #Declaring variables
-    EndpointID = ""
     EndpointName = ""
     Container = ""
     ContainerState = ""
@@ -62,7 +61,7 @@ def printNewJSON():
         except:
             break
 
-    debugging = True
+    debugging = False
 
     def debug():
         #Debug view:
@@ -94,6 +93,41 @@ def printNewJSON():
                 countApps+=1
 
             counter+=1
+
+    endpoints = []
+    endpoints = results
+
+    #Gets and prints each Endpoint and Container.
+    counter = 0
+    while counter < len(endpoints): #len(results) is the length of the results list.
+
+        #Gets the names of each Endpoint with next(iter().
+        EndptName = next(iter(endpoints[counter]))
+
+        #Counts and prints each container Name and its State:
+        countApps = 0
+        while countApps < len(endpoints[counter][EndptName]): #len(results[counter][EndptName]) is the number of containers.
+
+            #Generates string.
+            debudResult = (
+            "\t\tName: " + str(endpoints[counter][EndptName][countApps][0]) + "\n" + #Name.
+            "\t\tState: " + str(endpoints[counter][EndptName][countApps][1]) + "\n" #State.
+            )
+
+            ENDPOINTNAME = next(iter(endpoints[counter]))
+            NAME = endpoints[counter][EndptName][countApps][0]
+            STATE = endpoints[counter][EndptName][countApps][1]
+
+            print(ENDPOINTNAME)
+            print(NAME)
+            print(STATE)
+
+            
+
+            #print(debudResult)
+            countApps+=1
+
+        counter+=1
 
     if debugging:
         debug()

@@ -7,7 +7,7 @@ import time
 import os
 
 #Creating the Gauge.
-container_state = Gauge("container_state", "State of the container", ["container_name"])
+container_state = Gauge("container_state", "State of the container", ["container_name", "endpoint_name"])
 
 #Create parser.
 parser = argparse.ArgumentParser(description = "Portainer Prometheus Script.")
@@ -40,30 +40,76 @@ def getAndFindData(APIK, URL):
         #Loading the string into a dictionary (JSON Format).
         info = json.loads(output)
 
-        #Count the number of containers.
-        count = 0 #Indicates the number of containers.
+        #Declaring variables
+        EndpointName = ""
+        Container = ""
+        ContainerState = ""
+
+        #Declaring list of results.
+        results = []
+
+        #Iterates trhough each endpoint and container and adds to the results list.
+        endpointNumber = 0
+        containerNumber = 0
         while True:
+            #Temporary list for container data.
+            containerTemp = []
             try:
-                container = info[count]
-                count+=1
+                #Gets endpoint name.
+                EndpointName = info[endpointNumber]["Name"]
+
+                while True:
+                    try:
+                        #Gets each container Name and State and add them to the temporary list.
+                        Container = info[endpointNumber]["Snapshots"][0]["DockerSnapshotRaw"]["Containers"][containerNumber]["Names"][0][1:]
+                        ContainerState = info[endpointNumber]["Snapshots"][0]["DockerSnapshotRaw"]["Containers"][containerNumber]["State"]
+                        containerTemp.append((Container, ContainerState))
+                        containerNumber+=1
+                    except:
+                        break
+                
+                #Adds data to the results list.
+                results.append({EndpointName: containerTemp})
+
+                #Update variables for the loop.
+                endpointNumber+=1
+                containerNumber = 0
+
             except:
                 break
-            
-        #Find the data in JSON: Gets Names and State of each container.
-        containerNumber = 0
-        while containerNumber < count:
-            #Adding information to a list.
-            container_info.append((info[containerNumber]["Names"][0][1:],
-            info[containerNumber]["State"]))
 
-            if(args.debugging):
-                #Debugging
-                print("\n\tContainer: " + info[containerNumber]["Names"][0][1:] +
-                "\n\tState: " + info[containerNumber]["State"] + "\n")
+        if(args.debugging):
+            #Debug view:
+            #Prints the number of Endpoints.
+            print("Number of Endpoints: " + str(len(results)) + "\n")
 
-            containerNumber+=1
+            #Gets and prints each Endpoint and Container.
+            counter = 0
+            while counter < len(results): #len(results) is the length of the results list.
+
+                #Gets the names of each Endpoint with next(iter()).
+                EndptName = next(iter(results[counter]))
+
+                #Prints Endpoint + number of containers.
+                print("\tEndpoint " + str(counter + 1) + ": " + str(EndptName) + "\n")
+                print("\tNumber of containers: " + str(len(results[counter][EndptName])))
+
+                #Counts and prints each container Name and its State:
+                countApps = 0
+                while countApps < len(results[counter][EndptName]): #len(results[counter][EndptName]) is the number of containers.
+
+                    #Generates string.
+                    debudResult = (
+                    "\t\tName: " + str(results[counter][EndptName][countApps][0]) + "\n" + #Name.
+                    "\t\tState: " + str(results[counter][EndptName][countApps][1]) + "\n" #State.
+                    )
+
+                    print(debudResult)
+                    countApps+=1
+
+                counter+=1
         
-        return container_info #Returns container list.
+        return results #Returns endpoints list.
 
     except:
         #Print error message.
@@ -71,11 +117,12 @@ def getAndFindData(APIK, URL):
         "\n - No internet connection." +
         "\n - Invalid API key or URL." +
         "\nPlease make sure to use the parameters, run this script followed by \"--help\" for more information.\n")
-        return container_info #Returns empty container list.
+        return results #Returns empty endpoints list.
 
 #Update the gauge with the provided values.
-def update_metrics(container_name, state):
-    container_state.labels(container_name=container_name).set(1 if state == 'running' else 0)
+def update_metrics(endpoint_name, container_name, state):
+    #print("FROM UPDATE METRICS METHOD: " + endpoint_name + " " + container_name + " " + state)
+    container_state.labels(container_name=container_name, endpoint_name=endpoint_name).set(1 if state == 'running' else 0)
 
 #Starts HTTP server.
 if __name__ == "__main__":
@@ -84,19 +131,42 @@ if __name__ == "__main__":
 
     try:
         while True:
-            #Gets list of containers.
-            containers = getAndFindData(args.apikey, args.url)
+            #Gets list of endpoints.
+            endpoints = getAndFindData(args.apikey, args.url)
 
             #Validate if the list came empty.
-            if not containers:
+            if not endpoints:
                 exit(0)
             else: #Proceeds if list is not empty.
-                for information in containers:
-                    update_metrics(*information)                 
+
+                #Gets each Endpoint and Container.
+                counter = 0
+                while counter < len(endpoints): #len(endpoints) is the length of the endpoints list.
+
+                    #Gets the names of each Endpoint with next(iter().
+                    EndptName = next(iter(endpoints[counter]))
+
+                    #Counts each container Name and its State:
+                    countApps = 0
+                    while countApps < len(endpoints[counter][EndptName]): #len(endpoints[counter][EndptName]) is the number of containers.
+                        ENDPOINTNAME = next(iter(endpoints[counter]))
+                        NAME = endpoints[counter][EndptName][countApps][0]
+                        STATE = endpoints[counter][EndptName][countApps][1]
+
+                        # print(ENDPOINTNAME)
+                        # print(NAME)
+                        # print(STATE)
+
+                        update_metrics(ENDPOINTNAME, NAME, STATE)
+
+                        countApps+=1
+
+                    counter+=1           
 
             print("The server is running. (" + str(seconds) + "s)")
             time.sleep(1)
             seconds+=1
+
     except:
         print("\nThe server stopped. Total seconds (" + str(seconds) + ")\n")
         exit(0)
