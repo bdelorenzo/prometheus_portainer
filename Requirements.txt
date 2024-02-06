@@ -1,1 +1,1 @@
-prometheus_client
+pip install prometheus_client
