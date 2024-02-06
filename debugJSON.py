@@ -5,6 +5,7 @@ import argparse
 from prometheus_client import start_http_server, Gauge
 import time
 import os
+import sys
 
 def printOldJSON():
     #Reading the JSON file and loading in a python dictionary "info".
@@ -18,10 +19,25 @@ def printOldJSON():
     print(info[1]["Names"][0][1:])
 
 def printNewJSON():
-    #Opens and read the JSON file.
-    with open("Newendpoints.json") as openJSON:
-        info = json.load(openJSON)
-        openJSON.close()
+    # #Opens and read the JSON file.
+    # with open("Newendpoints.json") as openJSON:
+    #     info = json.load(openJSON)
+    #     openJSON.close()
+
+    #Define the command to get the container configuration.
+    getJSON = """ 
+    API_KEY='ptr_ZZjjmWCiS5YOJcpCd3xIcpLImTwO2LxWNMsWByGJ0jw='
+    curl -X GET --header 'Content-Type: application/json' --header "x-api-key: $API_KEY" --url 'https://portainer.delorenzo.mobi/api/endpoints' | jq
+    """
+
+    #Excecuting the command.
+    JSONinfo = subprocess.run(getJSON, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    
+    #Decoding the output from bytes to string.
+    output = JSONinfo.stdout.decode("utf-8")
+    
+    #Loading the string into a dictionary (JSON Format).
+    info = json.loads(output)
 
     #Declaring variables
     EndpointName = ""
@@ -133,3 +149,10 @@ def printNewJSON():
         debug()
 
 printNewJSON()
+
+number = 0
+while True:
+    print('\r' + str(number), end='')
+    sys.stdout.flush()
+    time.sleep(1)
+    number+=1

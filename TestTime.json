@@ -27,14 +27,14 @@
     "CloudProvider": null,
     "Snapshots": [
       {
-        "Time": 1696799270,
+        "Time": 1698690770,
         "DockerVersion": "24.0.2",
         "Swarm": false,
         "TotalCPU": 8,
         "TotalMemory": 16790667264,
-        "RunningContainerCount": 8,
-        "StoppedContainerCount": 1,
-        "HealthyContainerCount": 1,
+        "RunningContainerCount": 4,
+        "StoppedContainerCount": 5,
+        "HealthyContainerCount": 0,
         "UnhealthyContainerCount": 0,
         "VolumeCount": 6,
         "ImageCount": 13,
@@ -85,7 +85,7 @@
                 "io.portainer.server": "true"
               },
               "State": "running",
-              "Status": "Up 4 days",
+              "Status": "Up 3 weeks",
               "HostConfig": {
                 "NetworkMode": "default"
               },
@@ -138,15 +138,10 @@
               "ImageID": "sha256:506734eb5e71d5555e75ecfe2253806f75a6845cec83d7e03ca974137e9dc622",
               "Command": "docker-entrypoint.sh redis-server",
               "Created": 1693237500,
-              "Ports": [
-                {
-                  "PrivatePort": 6379,
-                  "Type": "tcp"
-                }
-              ],
+              "Ports": [],
               "Labels": {},
               "State": "exited",
-              "Status": "Up 5 weeks",
+              "Status": "Exited (0) 36 minutes ago",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -157,14 +152,14 @@
                     "Links": null,
                     "Aliases": null,
                     "NetworkID": "ab06fa3318475afcaaa25750e13951a531c6ea7f4b89e7c3eb064b804e53dee1",
-                    "EndpointID": "0db75c511a73b33b941ec4e0e05f0adf6f87c3bfc0f33b9a06b8ecefd52cbc65",
-                    "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.8",
-                    "IPPrefixLen": 16,
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:08",
+                    "MacAddress": "",
                     "DriverOpts": null
                   }
                 }
@@ -219,7 +214,7 @@
                 "maintainer": "The Prometheus Authors <prometheus-developers@googlegroups.com>"
               },
               "State": "running",
-              "Status": "Up 5 weeks",
+              "Status": "Up 2 months",
               "HostConfig": {
                 "NetworkMode": "prometheus_grafana_default"
               },
@@ -244,6 +239,14 @@
               },
               "Mounts": [
                 {
+                  "Type": "bind",
+                  "Source": "/opt/prometheus_grafana/prometheus.yml",
+                  "Destination": "/etc/prometheus/prometheus.yml",
+                  "Mode": "rw",
+                  "RW": true,
+                  "Propagation": "rprivate"
+                },
+                {
                   "Type": "volume",
                   "Name": "prometheus_grafana_prometheus_data",
                   "Source": "/var/lib/docker/volumes/prometheus_grafana_prometheus_data/_data",
@@ -252,14 +255,6 @@
                   "Mode": "z",
                   "RW": true,
                   "Propagation": ""
-                },
-                {
-                  "Type": "bind",
-                  "Source": "/opt/prometheus_grafana/prometheus.yml",
-                  "Destination": "/etc/prometheus/prometheus.yml",
-                  "Mode": "rw",
-                  "RW": true,
-                  "Propagation": "rprivate"
                 }
               ]
             },
@@ -300,7 +295,7 @@
                 "maintainer": "Grafana Labs <hello@grafana.com>"
               },
               "State": "running",
-              "Status": "Up 6 weeks",
+              "Status": "Up 2 months",
               "HostConfig": {
                 "NetworkMode": "prometheus_grafana_default"
               },
@@ -350,7 +345,7 @@
                 "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
               },
               "State": "exited",
-              "Status": "Exited (0) 3 days ago",
+              "Status": "Exited (0) 3 weeks ago",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -384,20 +379,7 @@
               "ImageID": "sha256:c18405a7344409fafea74695d2ad912b2e867a0d84ff16ef494d16bfb52643f4",
               "Command": "./entrypoint.sh",
               "Created": 1692636400,
-              "Ports": [
-                {
-                  "IP": "0.0.0.0",
-                  "PrivatePort": 1880,
-                  "PublicPort": 32799,
-                  "Type": "tcp"
-                },
-                {
-                  "IP": "::",
-                  "PrivatePort": 1880,
-                  "PublicPort": 32799,
-                  "Type": "tcp"
-                }
-              ],
+              "Ports": [],
               "Labels": {
                 "authors": "Dave Conway-Jones, Nick O'Leary, James Thomas, Raymond Mouthaan",
                 "org.label-schema.arch": "",
@@ -412,8 +394,8 @@
                 "org.label-schema.vcs-url": "https://github.com/node-red/node-red-docker",
                 "org.label-schema.version": "3.0.2"
               },
-              "State": "running",
-              "Status": "Up 4 days (healthy)",
+              "State": "exited",
+              "Status": "Exited (143) 53 minutes ago",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -424,14 +406,14 @@
                     "Links": null,
                     "Aliases": null,
                     "NetworkID": "ab06fa3318475afcaaa25750e13951a531c6ea7f4b89e7c3eb064b804e53dee1",
-                    "EndpointID": "92aaa55cf8f342607d23f9cd18868b7b3424bd9e7e929fb26b0cdc0d1c5e0dd5",
-                    "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.6",
-                    "IPPrefixLen": 16,
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:06",
+                    "MacAddress": "",
                     "DriverOpts": null
                   }
                 }
@@ -447,32 +429,7 @@
               "ImageID": "sha256:e1e1b7ae170b7d7d7e524717fe978e0090023cc82a7d9ffe48e344b0351a3ee1",
               "Command": "caddy run --config /etc/caddy/Caddyfile --adapter caddyfile",
               "Created": 1692636216,
-              "Ports": [
-                {
-                  "PrivatePort": 2019,
-                  "Type": "tcp"
-                },
-                {
-                  "PrivatePort": 443,
-                  "Type": "tcp"
-                },
-                {
-                  "PrivatePort": 443,
-                  "Type": "udp"
-                },
-                {
-                  "IP": "0.0.0.0",
-                  "PrivatePort": 80,
-                  "PublicPort": 32800,
-                  "Type": "tcp"
-                },
-                {
-                  "IP": "::",
-                  "PrivatePort": 80,
-                  "PublicPort": 32800,
-                  "Type": "tcp"
-                }
-              ],
+              "Ports": [],
               "Labels": {
                 "org.opencontainers.image.description": "a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go",
                 "org.opencontainers.image.documentation": "https://caddyserver.com/docs",
@@ -483,8 +440,8 @@
                 "org.opencontainers.image.vendor": "Light Code Labs",
                 "org.opencontainers.image.version": "v2.7.4"
               },
-              "State": "running",
-              "Status": "Up 3 days",
+              "State": "exited",
+              "Status": "Exited (0) 3 minutes ago",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -495,14 +452,14 @@
                     "Links": null,
                     "Aliases": null,
                     "NetworkID": "ab06fa3318475afcaaa25750e13951a531c6ea7f4b89e7c3eb064b804e53dee1",
-                    "EndpointID": "a0e78e88023b9d7e2c367a871a42c6f21dfe0b4ff37284c0a7a540fed17073bb",
-                    "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.5",
-                    "IPPrefixLen": 16,
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:05",
+                    "MacAddress": "",
                     "DriverOpts": null
                   }
                 }
@@ -534,7 +491,7 @@
               ],
               "Labels": {},
               "State": "running",
-              "Status": "Up 4 days",
+              "Status": "Up 3 weeks",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -568,30 +525,13 @@
               "ImageID": "sha256:4ab482f9bc2bece71ce2580802be1ec8864c834c4abecb6d901aec930ecc2efe",
               "Command": "docker-entrypoint.sh mysqld",
               "Created": 1692631569,
-              "Ports": [
-                {
-                  "PrivatePort": 33060,
-                  "Type": "tcp"
-                },
-                {
-                  "IP": "0.0.0.0",
-                  "PrivatePort": 3306,
-                  "PublicPort": 3306,
-                  "Type": "tcp"
-                },
-                {
-                  "IP": "::",
-                  "PrivatePort": 3306,
-                  "PublicPort": 3306,
-                  "Type": "tcp"
-                }
-              ],
+              "Ports": [],
               "Labels": {
                 "org.opencontainers.image.ref.name": "ubuntu",
                 "org.opencontainers.image.version": "22.04"
               },
-              "State": "running",
-              "Status": "Up 4 days",
+              "State": "exited",
+              "Status": "Exited (0) 44 minutes ago",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -602,14 +542,14 @@
                     "Links": null,
                     "Aliases": null,
                     "NetworkID": "ab06fa3318475afcaaa25750e13951a531c6ea7f4b89e7c3eb064b804e53dee1",
-                    "EndpointID": "21faa294368caefd1d50e72d66cbcb122591babf25b6a14e37bd4a5170ad978e",
-                    "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.3",
-                    "IPPrefixLen": 16,
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:03",
+                    "MacAddress": "",
                     "DriverOpts": null
                   }
                 }
@@ -630,39 +570,6 @@
           ],
           "Volumes": {
             "Volumes": [
-              {
-                "CreatedAt": "2023-08-21T16:33:23Z",
-                "Driver": "local",
-                "Labels": {
-                  "com.docker.compose.project": "prometheus_grafana",
-                  "com.docker.compose.version": "2.17.2",
-                  "com.docker.compose.volume": "grafana_data"
-                },
-                "Mountpoint": "/var/lib/docker/volumes/prometheus_grafana_grafana_data/_data",
-                "Name": "prometheus_grafana_grafana_data",
-                "Options": null,
-                "Scope": "local"
-              },
-              {
-                "CreatedAt": "2023-08-21T15:26:09Z",
-                "Driver": "local",
-                "Labels": {
-                  "com.docker.volume.anonymous": ""
-                },
-                "Mountpoint": "/var/lib/docker/volumes/c1bad89d311893cd39ce73271bc465cd8faf840853546c872b128f2438760fbf/_data",
-                "Name": "c1bad89d311893cd39ce73271bc465cd8faf840853546c872b128f2438760fbf",
-                "Options": null,
-                "Scope": "local"
-              },
-              {
-                "CreatedAt": "2023-06-25T18:36:14Z",
-                "Driver": "local",
-                "Labels": null,
-                "Mountpoint": "/var/lib/docker/volumes/portainer_data/_data",
-                "Name": "portainer_data",
-                "Options": null,
-                "Scope": "local"
-              },
               {
                 "CreatedAt": "2023-08-21T15:59:24Z",
                 "Driver": "local",
@@ -695,6 +602,39 @@
                 },
                 "Mountpoint": "/var/lib/docker/volumes/b18fd6d024de3ab4d3f65aa2a57686655ff4121e0535f3e28db35fbccfe0d872/_data",
                 "Name": "b18fd6d024de3ab4d3f65aa2a57686655ff4121e0535f3e28db35fbccfe0d872",
+                "Options": null,
+                "Scope": "local"
+              },
+              {
+                "CreatedAt": "2023-08-21T16:33:23Z",
+                "Driver": "local",
+                "Labels": {
+                  "com.docker.compose.project": "prometheus_grafana",
+                  "com.docker.compose.version": "2.17.2",
+                  "com.docker.compose.volume": "grafana_data"
+                },
+                "Mountpoint": "/var/lib/docker/volumes/prometheus_grafana_grafana_data/_data",
+                "Name": "prometheus_grafana_grafana_data",
+                "Options": null,
+                "Scope": "local"
+              },
+              {
+                "CreatedAt": "2023-08-21T15:26:09Z",
+                "Driver": "local",
+                "Labels": {
+                  "com.docker.volume.anonymous": ""
+                },
+                "Mountpoint": "/var/lib/docker/volumes/c1bad89d311893cd39ce73271bc465cd8faf840853546c872b128f2438760fbf/_data",
+                "Name": "c1bad89d311893cd39ce73271bc465cd8faf840853546c872b128f2438760fbf",
+                "Options": null,
+                "Scope": "local"
+              },
+              {
+                "CreatedAt": "2023-06-25T18:36:14Z",
+                "Driver": "local",
+                "Labels": null,
+                "Mountpoint": "/var/lib/docker/volumes/portainer_data/_data",
+                "Name": "portainer_data",
                 "Options": null,
                 "Scope": "local"
               }
@@ -1066,9 +1006,9 @@
           "Info": {
             "ID": "1d3b07b3-c042-4a8e-8de3-4efd9a5e425d",
             "Containers": 9,
-            "ContainersRunning": 8,
+            "ContainersRunning": 4,
             "ContainersPaused": 0,
-            "ContainersStopped": 1,
+            "ContainersStopped": 5,
             "Images": 13,
             "Driver": "overlay2",
             "DriverStatus": [
@@ -1131,10 +1071,10 @@
             "BridgeNfIptables": true,
             "BridgeNfIp6tables": true,
             "Debug": false,
-            "NFd": 90,
+            "NFd": 82,
             "OomKillDisable": true,
-            "NGoroutines": 107,
-            "SystemTime": "2023-10-08T21:07:50.836599494Z",
+            "NGoroutines": 100,
+            "SystemTime": "2023-10-30T18:32:50.836078558Z",
             "LoggingDriver": "json-file",
             "CgroupDriver": "cgroupfs",
             "CgroupVersion": "1",
@@ -1366,13 +1306,13 @@
     "CloudProvider": null,
     "Snapshots": [
       {
-        "Time": 1696799270,
+        "Time": 1698690770,
         "DockerVersion": "24.0.6",
         "Swarm": false,
         "TotalCPU": 4,
         "TotalMemory": 2084151296,
-        "RunningContainerCount": 2,
-        "StoppedContainerCount": 0,
+        "RunningContainerCount": 1,
+        "StoppedContainerCount": 1,
         "HealthyContainerCount": 0,
         "UnhealthyContainerCount": 0,
         "VolumeCount": 1,
@@ -1390,15 +1330,10 @@
               "ImageID": "sha256:7c4b517da47d331a47827390b9e8eb1be7ee68133af9c332660001b4d447828d",
               "Command": "docker-entrypoint.sh redis-server",
               "Created": 1696799130,
-              "Ports": [
-                {
-                  "PrivatePort": 6379,
-                  "Type": "tcp"
-                }
-              ],
+              "Ports": [],
               "Labels": {},
-              "State": "running",
-              "Status": "Up 2 minutes",
+              "State": "exited",
+              "Status": "Exited (0) 6 minutes ago",
               "HostConfig": {
                 "NetworkMode": "bridge"
               },
@@ -1409,14 +1344,14 @@
                     "Links": null,
                     "Aliases": null,
                     "NetworkID": "36522e4efb28c6f5ac03b8a0dd5564df79faa6dee1c12836eb2c0131b8f5b2d2",
-                    "EndpointID": "d84efb82da19cb097bce3273e2be34132a5a210fc5bf66aab8ef96d9924d2506",
-                    "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.3",
-                    "IPPrefixLen": 16,
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:03",
+                    "MacAddress": "",
                     "DriverOpts": null
                   }
                 }
@@ -1461,7 +1396,7 @@
                 "io.portainer.agent": "true"
               },
               "State": "running",
-              "Status": "Up 4 days",
+              "Status": "Up 3 weeks",
               "HostConfig": {
                 "NetworkMode": "default"
               },
@@ -1487,19 +1422,19 @@
               "Mounts": [
                 {
                   "Type": "bind",
-                  "Source": "/var/lib/docker/volumes",
-                  "Destination": "/var/lib/docker/volumes",
-                  "Mode": "",
-                  "RW": true,
-                  "Propagation": "rslave"
-                },
-                {
-                  "Type": "bind",
                   "Source": "/var/run/docker.sock",
                   "Destination": "/var/run/docker.sock",
                   "Mode": "",
                   "RW": true,
                   "Propagation": "rprivate"
+                },
+                {
+                  "Type": "bind",
+                  "Source": "/var/lib/docker/volumes",
+                  "Destination": "/var/lib/docker/volumes",
+                  "Mode": "",
+                  "RW": true,
+                  "Propagation": "rslave"
                 }
               ]
             }
@@ -1642,9 +1577,9 @@
           "Info": {
             "ID": "fc7e945f-4e80-48f2-8d04-d07ffe816a1a",
             "Containers": 2,
-            "ContainersRunning": 2,
+            "ContainersRunning": 1,
             "ContainersPaused": 0,
-            "ContainersStopped": 0,
+            "ContainersStopped": 1,
             "Images": 2,
             "Driver": "overlay2",
             "DriverStatus": [
@@ -1707,10 +1642,10 @@
             "BridgeNfIptables": true,
             "BridgeNfIp6tables": true,
             "Debug": false,
-            "NFd": 37,
+            "NFd": 31,
             "OomKillDisable": true,
-            "NGoroutines": 51,
-            "SystemTime": "2023-10-08T21:07:58.066455577Z",
+            "NGoroutines": 47,
+            "SystemTime": "2023-10-30T18:32:58.066305426Z",
             "LoggingDriver": "json-file",
             "CgroupDriver": "cgroupfs",
             "CgroupVersion": "1",
@@ -1942,21 +1877,65 @@
     "CloudProvider": null,
     "Snapshots": [
       {
-        "Time": 1696799270,
+        "Time": 1698690770,
         "DockerVersion": "24.0.6",
         "Swarm": true,
         "TotalCPU": 8,
         "TotalMemory": 4168302592,
-        "RunningContainerCount": 2,
+        "RunningContainerCount": 3,
         "StoppedContainerCount": 0,
         "HealthyContainerCount": 0,
         "UnhealthyContainerCount": 0,
         "VolumeCount": 0,
-        "ImageCount": 2,
+        "ImageCount": 3,
         "ServiceCount": 1,
         "StackCount": 0,
         "DockerSnapshotRaw": {
           "Containers": [
+            {
+              "Id": "e3f9b0ba898d078b4fdf535333d6334e40aaa92bf7bf1c62fd558f21ad77d317",
+              "Names": [
+                "/webserver00"
+              ],
+              "Image": "nginx:latest",
+              "ImageID": "sha256:61395b4c586da2b9b3b7ca903ea6a448e6783dfdd7f768ff2c1a0f3360aaba99",
+              "Command": "/docker-entrypoint.sh nginx -g 'daemon off;'",
+              "Created": 1696799292,
+              "Ports": [
+                {
+                  "PrivatePort": 80,
+                  "Type": "tcp"
+                }
+              ],
+              "Labels": {
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+              },
+              "State": "running",
+              "Status": "Up 3 weeks",
+              "HostConfig": {
+                "NetworkMode": "bridge"
+              },
+              "NetworkSettings": {
+                "Networks": {
+                  "bridge": {
+                    "IPAMConfig": {},
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "9c8bd442e6eaea6904553c2600ce525755396a4b5808a94bdc03d347e7712581",
+                    "EndpointID": "3918e601f6a79e17143600b077b690c6f93c429b68f0254b5badacc2ef1dd914",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                  }
+                }
+              },
+              "Mounts": []
+            },
             {
               "Id": "f958e6ac92719c47e2d5ac51c142799ec3c3f738c0c13653ab5829f03f691c9f",
               "Names": [
@@ -1977,7 +1956,7 @@
                 "io.portainer.agent": "true"
               },
               "State": "running",
-              "Status": "Up 4 days",
+              "Status": "Up 3 weeks",
               "HostConfig": {
                 "NetworkMode": "default"
               },
@@ -2022,16 +2001,16 @@
               "Mounts": [
                 {
                   "Type": "bind",
-                  "Source": "/var/run/docker.sock",
-                  "Destination": "/var/run/docker.sock",
+                  "Source": "/var/lib/docker/volumes",
+                  "Destination": "/var/lib/docker/volumes",
                   "Mode": "",
                   "RW": true,
                   "Propagation": "rprivate"
                 },
                 {
                   "Type": "bind",
-                  "Source": "/var/lib/docker/volumes",
-                  "Destination": "/var/lib/docker/volumes",
+                  "Source": "/var/run/docker.sock",
+                  "Destination": "/var/run/docker.sock",
                   "Mode": "",
                   "RW": true,
                   "Propagation": "rprivate"
@@ -2058,7 +2037,7 @@
                 "io.portainer.agent": "true"
               },
               "State": "running",
-              "Status": "Up 4 days",
+              "Status": "Up 3 weeks",
               "HostConfig": {
                 "NetworkMode": "default"
               },
@@ -2125,179 +2104,6 @@
             "Warnings": null
           },
           "Networks": [
-            {
-              "Name": "portainer_agent_network",
-              "Id": "ac00mn9e12017mu7s06dt1awl",
-              "Created": "2023-10-04T01:42:00.176510793Z",
-              "Scope": "swarm",
-              "Driver": "overlay",
-              "EnableIPv6": false,
-              "IPAM": {
-                "Driver": "default",
-                "Options": null,
-                "Config": [
-                  {
-                    "Subnet": "10.0.1.0/24",
-                    "Gateway": "10.0.1.1"
-                  }
-                ]
-              },
-              "Internal": false,
-              "Attachable": false,
-              "Ingress": false,
-              "ConfigFrom": {
-                "Network": ""
-              },
-              "ConfigOnly": false,
-              "Containers": null,
-              "Options": {
-                "com.docker.network.driver.overlay.vxlanid_list": "4097"
-              },
-              "Labels": null
-            },
-            {
-              "Name": "ingress",
-              "Id": "u6ke0bzezqwbiwqzg8ln8ptdb",
-              "Created": "2023-10-04T01:39:41.867237025Z",
-              "Scope": "swarm",
-              "Driver": "overlay",
-              "EnableIPv6": false,
-              "IPAM": {
-                "Driver": "default",
-                "Options": null,
-                "Config": [
-                  {
-                    "Subnet": "10.0.0.0/24",
-                    "Gateway": "10.0.0.1"
-                  }
-                ]
-              },
-              "Internal": false,
-              "Attachable": false,
-              "Ingress": true,
-              "ConfigFrom": {
-                "Network": ""
-              },
-              "ConfigOnly": false,
-              "Containers": null,
-              "Options": {
-                "com.docker.network.driver.overlay.vxlanid_list": "4096"
-              },
-              "Labels": null
-            },
-            {
-              "Name": "host",
-              "Id": "c35c6039ff9f5e86e77bd7d1bddd73d630cfc954df3d569d5399ce4894071974",
-              "Created": "2023-10-04T01:39:38.72507853Z",
-              "Scope": "local",
-              "Driver": "host",
-              "EnableIPv6": false,
-              "IPAM": {
-                "Driver": "default",
-                "Options": null,
-                "Config": []
-              },
-              "Internal": false,
-              "Attachable": false,
-              "Ingress": false,
-              "ConfigFrom": {
-                "Network": ""
-              },
-              "ConfigOnly": false,
-              "Containers": {},
-              "Options": {},
-              "Labels": {}
-            },
-            {
-              "Name": "bridge",
-              "Id": "ec73d7c16ca9bdac14b05b4d5a51a7ee9098bbdfaf8ac05fe9283027e67395c3",
-              "Created": "2023-10-04T01:39:39.026223514Z",
-              "Scope": "local",
-              "Driver": "bridge",
-              "EnableIPv6": false,
-              "IPAM": {
-                "Driver": "default",
-                "Options": null,
-                "Config": [
-                  {
-                    "Subnet": "172.17.0.0/16",
-                    "Gateway": "172.17.0.1"
-                  }
-                ]
-              },
-              "Internal": false,
-              "Attachable": false,
-              "Ingress": false,
-              "ConfigFrom": {
-                "Network": ""
-              },
-              "ConfigOnly": false,
-              "Containers": {},
-              "Options": {
-                "com.docker.network.bridge.default_bridge": "true",
-                "com.docker.network.bridge.enable_icc": "true",
-                "com.docker.network.bridge.enable_ip_masquerade": "true",
-                "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
-                "com.docker.network.bridge.name": "docker0",
-                "com.docker.network.driver.mtu": "1500"
-              },
-              "Labels": {}
-            },
-            {
-              "Name": "docker_gwbridge",
-              "Id": "0fbe4c591fa549e6a3ef7c75eb76031de7bd4160ec9eb4b86fcfa199d213e58e",
-              "Created": "2023-10-04T01:39:43.481730981Z",
-              "Scope": "local",
-              "Driver": "bridge",
-              "EnableIPv6": false,
-              "IPAM": {
-                "Driver": "default",
-                "Options": null,
-                "Config": [
-                  {
-                    "Subnet": "172.18.0.0/16",
-                    "Gateway": "172.18.0.1"
-                  }
-                ]
-              },
-              "Internal": false,
-              "Attachable": false,
-              "Ingress": false,
-              "ConfigFrom": {
-                "Network": ""
-              },
-              "ConfigOnly": false,
-              "Containers": {},
-              "Options": {
-                "com.docker.network.bridge.enable_icc": "false",
-                "com.docker.network.bridge.enable_ip_masquerade": "true",
-                "com.docker.network.bridge.name": "docker_gwbridge"
-              },
-              "Labels": {}
-            },
-            {
-              "Name": "none",
-              "Id": "b147fe3f4efdf8593ef455ab611f8db74ea0b5b34349b1eb7ecb6aad2b3f5ec6",
-              "Created": "2023-10-04T01:39:38.71697405Z",
-              "Scope": "local",
-              "Driver": "null",
-              "EnableIPv6": false,
-              "IPAM": {
-                "Driver": "default",
-                "Options": null,
-                "Config": []
-              },
-              "Internal": false,
-              "Attachable": false,
-              "Ingress": false,
-              "ConfigFrom": {
-                "Network": ""
-              },
-              "ConfigOnly": false,
-              "Containers": {},
-              "Options": {},
-              "Labels": {}
-            },
             {
               "Name": "portainer_agent_network",
               "Id": "ac00mn9e12017mu7s06dt1awl",
@@ -2470,9 +2276,200 @@
                 "com.docker.network.bridge.name": "docker_gwbridge"
               },
               "Labels": {}
+            },
+            {
+              "Name": "portainer_agent_network",
+              "Id": "ac00mn9e12017mu7s06dt1awl",
+              "Created": "2023-10-04T01:42:00.176510793Z",
+              "Scope": "swarm",
+              "Driver": "overlay",
+              "EnableIPv6": false,
+              "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": [
+                  {
+                    "Subnet": "10.0.1.0/24",
+                    "Gateway": "10.0.1.1"
+                  }
+                ]
+              },
+              "Internal": false,
+              "Attachable": false,
+              "Ingress": false,
+              "ConfigFrom": {
+                "Network": ""
+              },
+              "ConfigOnly": false,
+              "Containers": null,
+              "Options": {
+                "com.docker.network.driver.overlay.vxlanid_list": "4097"
+              },
+              "Labels": null
+            },
+            {
+              "Name": "ingress",
+              "Id": "u6ke0bzezqwbiwqzg8ln8ptdb",
+              "Created": "2023-10-04T01:39:41.867237025Z",
+              "Scope": "swarm",
+              "Driver": "overlay",
+              "EnableIPv6": false,
+              "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": [
+                  {
+                    "Subnet": "10.0.0.0/24",
+                    "Gateway": "10.0.0.1"
+                  }
+                ]
+              },
+              "Internal": false,
+              "Attachable": false,
+              "Ingress": true,
+              "ConfigFrom": {
+                "Network": ""
+              },
+              "ConfigOnly": false,
+              "Containers": null,
+              "Options": {
+                "com.docker.network.driver.overlay.vxlanid_list": "4096"
+              },
+              "Labels": null
+            },
+            {
+              "Name": "docker_gwbridge",
+              "Id": "0fbe4c591fa549e6a3ef7c75eb76031de7bd4160ec9eb4b86fcfa199d213e58e",
+              "Created": "2023-10-04T01:39:43.481730981Z",
+              "Scope": "local",
+              "Driver": "bridge",
+              "EnableIPv6": false,
+              "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": [
+                  {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                  }
+                ]
+              },
+              "Internal": false,
+              "Attachable": false,
+              "Ingress": false,
+              "ConfigFrom": {
+                "Network": ""
+              },
+              "ConfigOnly": false,
+              "Containers": {},
+              "Options": {
+                "com.docker.network.bridge.enable_icc": "false",
+                "com.docker.network.bridge.enable_ip_masquerade": "true",
+                "com.docker.network.bridge.name": "docker_gwbridge"
+              },
+              "Labels": {}
+            },
+            {
+              "Name": "none",
+              "Id": "b147fe3f4efdf8593ef455ab611f8db74ea0b5b34349b1eb7ecb6aad2b3f5ec6",
+              "Created": "2023-10-04T01:39:38.71697405Z",
+              "Scope": "local",
+              "Driver": "null",
+              "EnableIPv6": false,
+              "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": []
+              },
+              "Internal": false,
+              "Attachable": false,
+              "Ingress": false,
+              "ConfigFrom": {
+                "Network": ""
+              },
+              "ConfigOnly": false,
+              "Containers": {},
+              "Options": {},
+              "Labels": {}
+            },
+            {
+              "Name": "host",
+              "Id": "c35c6039ff9f5e86e77bd7d1bddd73d630cfc954df3d569d5399ce4894071974",
+              "Created": "2023-10-04T01:39:38.72507853Z",
+              "Scope": "local",
+              "Driver": "host",
+              "EnableIPv6": false,
+              "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": []
+              },
+              "Internal": false,
+              "Attachable": false,
+              "Ingress": false,
+              "ConfigFrom": {
+                "Network": ""
+              },
+              "ConfigOnly": false,
+              "Containers": {},
+              "Options": {},
+              "Labels": {}
+            },
+            {
+              "Name": "bridge",
+              "Id": "ec73d7c16ca9bdac14b05b4d5a51a7ee9098bbdfaf8ac05fe9283027e67395c3",
+              "Created": "2023-10-04T01:39:39.026223514Z",
+              "Scope": "local",
+              "Driver": "bridge",
+              "EnableIPv6": false,
+              "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": [
+                  {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                  }
+                ]
+              },
+              "Internal": false,
+              "Attachable": false,
+              "Ingress": false,
+              "ConfigFrom": {
+                "Network": ""
+              },
+              "ConfigOnly": false,
+              "Containers": {},
+              "Options": {
+                "com.docker.network.bridge.default_bridge": "true",
+                "com.docker.network.bridge.enable_icc": "true",
+                "com.docker.network.bridge.enable_ip_masquerade": "true",
+                "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+                "com.docker.network.bridge.name": "docker0",
+                "com.docker.network.driver.mtu": "1500"
+              },
+              "Labels": {}
             }
           ],
           "Images": [
+            {
+              "Containers": -1,
+              "Created": 1695228239,
+              "Id": "sha256:61395b4c586da2b9b3b7ca903ea6a448e6783dfdd7f768ff2c1a0f3360aaba99",
+              "Labels": {
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+              },
+              "ParentId": "",
+              "RepoDigests": [
+                "nginx@sha256:32da30332506740a2f7c34d5dc70467b7f14ec67d912703568daff790ab3f755"
+              ],
+              "RepoTags": [
+                "nginx:latest"
+              ],
+              "SharedSize": -1,
+              "Size": 186639942,
+              "VirtualSize": 186639942
+            },
             {
               "Containers": -1,
               "Created": 1688676311,
@@ -2508,11 +2505,11 @@
           ],
           "Info": {
             "ID": "682879fe-165c-4958-baca-fe2a9612d6b3",
-            "Containers": 1,
-            "ContainersRunning": 1,
+            "Containers": 2,
+            "ContainersRunning": 2,
             "ContainersPaused": 0,
             "ContainersStopped": 0,
-            "Images": 1,
+            "Images": 2,
             "Driver": "overlay2",
             "DriverStatus": [
               [
@@ -2574,10 +2571,10 @@
             "BridgeNfIptables": true,
             "BridgeNfIp6tables": true,
             "Debug": false,
-            "NFd": 54,
+            "NFd": 60,
             "OomKillDisable": true,
-            "NGoroutines": 146,
-            "SystemTime": "2023-10-08T21:07:58.867347129Z",
+            "NGoroutines": 150,
+            "SystemTime": "2023-10-30T18:32:58.867102831Z",
             "LoggingDriver": "json-file",
             "CgroupDriver": "cgroupfs",
             "CgroupVersion": "1",
@@ -2645,10 +2642,10 @@
               "Cluster": {
                 "ID": "znfxpzkq5tfo6z809h1cqp2uz",
                 "Version": {
-                  "Index": 43
+                  "Index": 87
                 },
                 "CreatedAt": "2023-10-04T01:39:41.867196479Z",
-                "UpdatedAt": "2023-10-08T13:39:41.869913147Z",
+                "UpdatedAt": "2023-10-30T13:39:41.870376316Z",
                 "Spec": {
                   "Name": "default",
                   "Labels": {},
@@ -2873,8 +2870,8 @@
     "Kubernetes": {
       "Snapshots": [
         {
-          "Time": 1696799270,
-          "KubernetesVersion": "v1.27.5",
+          "Time": 1698690770,
+          "KubernetesVersion": "v1.27.6",
           "NodeCount": 2,
           "TotalCPU": 8,
           "TotalMemory": 8203034624
@@ -2930,7 +2927,7 @@
       "CommandInterval": 0
     },
     "Agent": {
-      "Version": "2.18.4"
+      "Version": "2.19.1"
     },
     "LocalTimeZone": "",
     "ChangeWindow": {

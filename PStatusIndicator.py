@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description = "Portainer Prometheus Script.")
 #Define argumetns.
 parser.add_argument("-apik", "--apikey", type=str, help="Indicates which Portainer API Key (mandatory)")
 parser.add_argument("-url", type=str, help="Indicates which Portainer URL (mandatory)")
-parser.add_argument("-debug", "--debugging", action='store_true', help="Shows containers (optional)")
+parser.add_argument("-debug", "--debugging", action='store_true', help="Shows containers. Note: This option consumes memory over time and could make the application crash after some time. Better for testing only. (optional)")
 #Parse the rguments.
 args = parser.parse_args()
 
@@ -161,9 +161,11 @@ if __name__ == "__main__":
 
                         countApps+=1
 
-                    counter+=1           
+                    counter+=1
 
-            print("The server is running. (" + str(seconds) + "s)")
+            if args.debugging:
+                print("\nThe server is running. (" + str(seconds) + "s)\n")
+
             time.sleep(1)
             seconds+=1
 
