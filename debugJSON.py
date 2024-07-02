@@ -26,7 +26,7 @@ def printNewJSON():
 
     #Define the command to get the container configuration.
     getJSON = """ 
-    API_KEY='ptr_ZZjjmWCiS5YOJcpCd3xIcpLImTwO2LxWNMsWByGJ0jw='
+    API_KEY=your_API_KEY'
     curl -X GET --header 'Content-Type: application/json' --header "x-api-key: $API_KEY" --url 'https://portainer.delorenzo.mobi/api/endpoints' | jq
     """
 
